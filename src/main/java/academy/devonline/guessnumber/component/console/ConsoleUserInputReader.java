@@ -15,28 +15,36 @@
  *
  */
 
-package academy.devonline.guessnumber;
+package academy.devonline.guessnumber.component.console;
 
 import academy.devonline.guessnumber.component.DataPrinter;
-import academy.devonline.guessnumber.component.Game;
-import academy.devonline.guessnumber.component.NumberGenerator;
 import academy.devonline.guessnumber.component.UserInputReader;
-import academy.devonline.guessnumber.component.console.ConsoleDataPrinter;
-import academy.devonline.guessnumber.component.console.ConsoleUserInputReader;
+
+import java.util.Scanner;
 
 /**
  * @author devonline
  * @link http://devonline.academy/java
  */
-public class GameFactory {
+public class ConsoleUserInputReader implements UserInputReader {
 
-    public GameFactory(final String[] args) {
+    private final DataPrinter dataPrinter;
+
+    public ConsoleUserInputReader(final DataPrinter dataPrinter) {
+        this.dataPrinter = dataPrinter;
     }
 
-    public Game create() {
-        final NumberGenerator numberGenerator = new NumberGenerator();
-        final DataPrinter dataPrinter = new ConsoleDataPrinter();
-        final UserInputReader userInputReader = new ConsoleUserInputReader(dataPrinter);
-        return new Game(numberGenerator, dataPrinter, userInputReader);
+    @Override
+    public int getUserInput() {
+        while (true) {
+            dataPrinter.printInfoMessage("Please type a number between 0 and 9:");
+            final String line = new Scanner(System.in).nextLine();
+            if (line.length() == 1) {
+                final char ch = line.charAt(0);
+                if (ch >= '0' && ch <= '9') {
+                    return Integer.parseInt(line);
+                }
+            }
+        }
     }
 }
