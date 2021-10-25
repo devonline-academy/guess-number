@@ -36,6 +36,8 @@ public class GuessTheNumber {
                 System.out.println("number < " + userCase + ". Try again:");
             } else {
                 System.out.println("Congratulations, you guessed the number!");
+                // Wait for enter pressed
+                new Scanner(System.in).nextLine();
                 break;
             }
         }
