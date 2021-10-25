@@ -25,6 +25,7 @@ import academy.devonline.guessnumber.component.UserInputReader;
 import academy.devonline.guessnumber.component.console.ConsoleDataPrinter;
 import academy.devonline.guessnumber.component.console.ConsoleGameOverHandler;
 import academy.devonline.guessnumber.component.console.ConsoleUserInputReader;
+import academy.devonline.guessnumber.component.swing.GameWindow;
 
 /**
  * @author devonline
@@ -37,9 +38,20 @@ public class GameFactory {
 
     public Game create() {
         final NumberGenerator numberGenerator = new NumberGenerator();
-        final DataPrinter dataPrinter = new ConsoleDataPrinter();
-        final UserInputReader userInputReader = new ConsoleUserInputReader(dataPrinter);
-        final GameOverHandler gameOverHandler = new ConsoleGameOverHandler();
+        final DataPrinter dataPrinter;
+        final UserInputReader userInputReader;
+        final GameOverHandler gameOverHandler;
+        // FIXME: Must be GUI mode
+        if (1 == 1) {
+            final GameWindow gameWindow = new GameWindow();
+            dataPrinter = gameWindow;
+            userInputReader = gameWindow;
+            gameOverHandler = gameWindow;
+        } else {
+            dataPrinter = new ConsoleDataPrinter();
+            userInputReader = new ConsoleUserInputReader(dataPrinter);
+            gameOverHandler = new ConsoleGameOverHandler();
+        }
         return new Game(numberGenerator, dataPrinter, userInputReader, gameOverHandler);
     }
 }
