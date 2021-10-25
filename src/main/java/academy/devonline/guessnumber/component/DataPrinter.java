@@ -15,25 +15,13 @@
  *
  */
 
-package academy.devonline.guessnumber;
-
-import academy.devonline.guessnumber.component.DataPrinter;
-import academy.devonline.guessnumber.component.Game;
-import academy.devonline.guessnumber.component.NumberGenerator;
-import academy.devonline.guessnumber.component.console.ConsoleDataPrinter;
+package academy.devonline.guessnumber.component;
 
 /**
  * @author devonline
  * @link http://devonline.academy/java
  */
-public class GameFactory {
+public interface DataPrinter {
 
-    public GameFactory(final String[] args) {
-    }
-
-    public Game create() {
-        final NumberGenerator numberGenerator = new NumberGenerator();
-        final DataPrinter dataPrinter = new ConsoleDataPrinter();
-        return new Game(numberGenerator, dataPrinter);
-    }
+    void printInfoMessage(String message);
 }
