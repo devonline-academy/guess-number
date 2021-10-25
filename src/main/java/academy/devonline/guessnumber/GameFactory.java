@@ -22,10 +22,14 @@ import academy.devonline.guessnumber.component.Game;
 import academy.devonline.guessnumber.component.GameOverHandler;
 import academy.devonline.guessnumber.component.NumberGenerator;
 import academy.devonline.guessnumber.component.UserInputReader;
+import academy.devonline.guessnumber.component.config.CommandLineArgumentParser;
 import academy.devonline.guessnumber.component.console.ConsoleDataPrinter;
 import academy.devonline.guessnumber.component.console.ConsoleGameOverHandler;
 import academy.devonline.guessnumber.component.console.ConsoleUserInputReader;
 import academy.devonline.guessnumber.component.swing.GameWindow;
+import academy.devonline.guessnumber.model.config.UserInterface;
+
+import static academy.devonline.guessnumber.model.config.UserInterface.GUI;
 
 /**
  * @author devonline
@@ -33,7 +37,12 @@ import academy.devonline.guessnumber.component.swing.GameWindow;
  */
 public class GameFactory {
 
+    private final UserInterface userInterface;
+
     public GameFactory(final String[] args) {
+        final CommandLineArgumentParser.CommandLineArguments commandLineArguments =
+                new CommandLineArgumentParser(args).parse();
+        userInterface = commandLineArguments.getUserInterface();
     }
 
     public Game create() {
@@ -41,8 +50,7 @@ public class GameFactory {
         final DataPrinter dataPrinter;
         final UserInputReader userInputReader;
         final GameOverHandler gameOverHandler;
-        // FIXME: Must be GUI mode
-        if (1 == 1) {
+        if (userInterface == GUI) {
             final GameWindow gameWindow = new GameWindow();
             dataPrinter = gameWindow;
             userInputReader = gameWindow;
