@@ -17,7 +17,6 @@
 
 package academy.devonline.guessnumber.component;
 
-import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -26,8 +25,14 @@ import java.util.Scanner;
  */
 public class Game {
 
+    private final NumberGenerator numberGenerator;
+
+    public Game(final NumberGenerator numberGenerator) {
+        this.numberGenerator = numberGenerator;
+    }
+
     public void play() {
-        final int number = new Random().nextInt(10);
+        final int number = numberGenerator.generate();
         while (true) {
             System.out.println("Please type a number between 0 and 9:");
             final int userCase = new Scanner(System.in).nextInt();

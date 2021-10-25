@@ -15,22 +15,17 @@
  *
  */
 
-package academy.devonline.guessnumber;
+package academy.devonline.guessnumber.component;
 
-import academy.devonline.guessnumber.component.Game;
-import academy.devonline.guessnumber.component.NumberGenerator;
+import java.util.Random;
 
 /**
  * @author devonline
  * @link http://devonline.academy/java
  */
-public class GameFactory {
+public class NumberGenerator {
 
-    public GameFactory(final String[] args) {
-    }
-
-    public Game create() {
-        final NumberGenerator numberGenerator = new NumberGenerator();
-        return new Game(numberGenerator);
+    public int generate() {
+        return new Random().nextInt(10);
     }
 }
