@@ -19,9 +19,11 @@ package academy.devonline.guessnumber;
 
 import academy.devonline.guessnumber.component.DataPrinter;
 import academy.devonline.guessnumber.component.Game;
+import academy.devonline.guessnumber.component.GameOverHandler;
 import academy.devonline.guessnumber.component.NumberGenerator;
 import academy.devonline.guessnumber.component.UserInputReader;
 import academy.devonline.guessnumber.component.console.ConsoleDataPrinter;
+import academy.devonline.guessnumber.component.console.ConsoleGameOverHandler;
 import academy.devonline.guessnumber.component.console.ConsoleUserInputReader;
 
 /**
@@ -37,6 +39,7 @@ public class GameFactory {
         final NumberGenerator numberGenerator = new NumberGenerator();
         final DataPrinter dataPrinter = new ConsoleDataPrinter();
         final UserInputReader userInputReader = new ConsoleUserInputReader(dataPrinter);
-        return new Game(numberGenerator, dataPrinter, userInputReader);
+        final GameOverHandler gameOverHandler = new ConsoleGameOverHandler();
+        return new Game(numberGenerator, dataPrinter, userInputReader, gameOverHandler);
     }
 }

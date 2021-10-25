@@ -17,8 +17,6 @@
 
 package academy.devonline.guessnumber.component;
 
-import java.util.Scanner;
-
 /**
  * @author devonline
  * @link http://devonline.academy/java
@@ -31,12 +29,16 @@ public class Game {
 
     private final UserInputReader userInputReader;
 
+    private final GameOverHandler gameOverHandler;
+
     public Game(final NumberGenerator numberGenerator,
                 final DataPrinter dataPrinter,
-                final UserInputReader userInputReader) {
+                final UserInputReader userInputReader,
+                final GameOverHandler gameOverHandler) {
         this.numberGenerator = numberGenerator;
         this.dataPrinter = dataPrinter;
         this.userInputReader = userInputReader;
+        this.gameOverHandler = gameOverHandler;
     }
 
     public void play() {
@@ -49,8 +51,7 @@ public class Game {
                 dataPrinter.printInfoMessage("number < " + userCase + ". Try again:");
             } else {
                 dataPrinter.printInfoMessage("Congratulations, you guessed the number!");
-                // Wait for enter pressed
-                new Scanner(System.in).nextLine();
+                gameOverHandler.gameOver();
                 break;
             }
         }
